@@ -3,6 +3,7 @@
 # Código usado como referencia https://gist.github.com/divanibarbosa/a8662693e44ab9ee0d0e8c2d74808929
 
 
+from pickle import NONE
 from Node import Node
 
 from binarytree import build
@@ -59,6 +60,44 @@ class BSTree:
                                    # insercao na direita do dad
                                    node_d.setRight(node)
                               break  # sai do grupo
+
+     def treeVizualizer(self):
+           # verificando se a arvore esta vazia , ou nao
+          if self.empty():  # raiz eh o nodo que esta sendo inserido
+               return [None]
+
+          objTree = [[self.root]]
+          treeList = []
+
+          hight = self.altura(self.root)
+
+          for coun in range(hight):
+               objTree.append([])
+
+               for node in objTree[coun]:
+
+                    if node is not None:
+                         current_node = node
+                         
+                         if current_node.getLeft() is not None:
+                              objTree[coun+1].append(current_node.getLeft())
+                         else:
+                              objTree[coun+1].append(None)
+
+                         if current_node.getRight() is not None:
+                              objTree[coun+1].append(current_node.getRight())
+                         else:
+                              objTree[coun+1].append(None)
+
+          for i in objTree:
+               for j in i:
+                    if j is None:
+                         treeList.append(None)
+                    else:
+                         treeList.append(j.getLabel())
+          
+          return treeList
+
 
      def empty(self):
           if self.root == None:  # se a raiz nao existe
@@ -255,7 +294,7 @@ class BSTree:
              print(" Valor maximo: %d" %(self.maxx().label))
 
      def visualization(self):
-          values = [10,5,20,4,6,15,25]
+          values = self.treeVizualizer()
           root = build(values)
           print(root)
 

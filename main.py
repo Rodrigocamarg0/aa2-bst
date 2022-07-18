@@ -24,7 +24,7 @@ while num != 8:
      print(" #6: Pos Ordem")
      print(" #7: Exibir")
      print(" #8: Sair do programa")
-     tree.printOrder("preOrdem")
+     tree.visualization()
      print("\n========================================")
 
      num = int(input("-> "))
@@ -50,7 +50,7 @@ while num != 8:
      elif num == 7:
           tree.treeInfo()
      elif num == 9:
-          tree.visualization()
+          tree.treeVizualizer()
      elif num == 8:
           break
  
